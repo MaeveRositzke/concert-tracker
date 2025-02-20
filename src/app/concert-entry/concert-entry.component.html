@@ -1,1 +1,41 @@
-<p>concert-entry works!</p>
+<div class="concert-entry">
+
+  <div class="user">
+    <img src="user.jpg" alt="User Profile Picture" class="w-16 h-16 rounded-full">
+    <p><strong>{{user}}</strong></p>
+  </div>
+
+  <div class="basic-info">
+    <p>{{date}}</p>
+    <p>Artists: {{artists}}</p>
+    <p>{{venue}}</p>
+    <p>{{city}}</p>
+    <p>{{tour}}</p>
+  </div>
+
+  <div class="review">
+    <p><strong>{{rating}}</strong></p>
+    <p>{{description}}</p>
+  </div>
+
+  <div class="media">
+    <h3 class="text-xl font-semibold">Camera Roll</h3>
+    <div class="media-entries">
+      <img src="photo1.jpg" alt="Concert Photo">
+      <img src="photo2.jpg" alt="Concert Photo">
+      <video controls>
+        <source src="video1.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <div class="comments">
+    <h3 class="text-xl font-semibold">Comments</h3>
+    <div class="comment-entries"></div>
+  </div>
+
+  <div class="Likes">
+    <span>👍 {{likes}} Likes</span>
+    <button (click)="likeConcert()">Like</button>
+  </div>
+</div>
