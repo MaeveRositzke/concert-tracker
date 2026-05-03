@@ -1,0 +1,357 @@
+:root {
+    --cream:    #f5efdf;
+    --parchment:#ede4cc;
+    --ink:      #1c1208;
+    --faded:    #6b5b3e;
+    --rust:     #a83820;
+    --gold:     #c8933a;
+    --stamp:    #7a2318;
+    --line:     #c9b99a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #2a1f12;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    font-family: 'Courier Prime', monospace;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, #3d2b18 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, #1a1008 0%, transparent 50%);
+  }
+
+  /* ── Page ─────────────────────────────── */
+  .page {
+    background: var(--cream);
+    width: min(680px, 100%);
+    min-height: 860px;
+    border-radius: 2px;
+    position: relative;
+    padding: 3.5rem 3.5rem 3rem 5rem;
+    box-shadow:
+      -6px 0 18px rgba(0,0,0,.35),
+       6px 6px 32px rgba(0,0,0,.55),
+       inset -1px 0 0 var(--line);
+
+    /* paper texture */
+    background-image:
+      repeating-linear-gradient(
+        transparent,
+        transparent 31px,
+        var(--line) 31px,
+        var(--line) 32px
+      ),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+
+    animation: pageIn .6s ease both;
+  }
+
+  @keyframes pageIn {
+    from { opacity: 0; transform: translateY(18px) rotate(-0.5deg); }
+    to   { opacity: 1; transform: translateY(0) rotate(0deg); }
+  }
+
+  /* spiral binding holes */
+  .page::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3.6rem;
+    background: var(--parchment);
+    border-right: 2px solid var(--line);
+  }
+
+  .holes {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 2rem 0;
+    z-index: 2;
+  }
+
+  .hole {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: #2a1f12;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,.6);
+    border: 2px solid #3d2b18;
+  }
+
+  /* ── Header ───────────────────────────── */
+  .entry-meta {
+    font-family: 'Caveat', cursive;
+    font-size: .95rem;
+    color: var(--faded);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.8rem;
+    letter-spacing: .02em;
+    animation: fadeUp .5s .2s ease both;
+  }
+
+  .entry-number {
+    font-family: 'Special Elite', cursive;
+    font-size: .75rem;
+    color: var(--gold);
+    letter-spacing: .15em;
+    text-transform: uppercase;
+  }
+
+  .headliner {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.05;
+    margin-bottom: .35rem;
+    animation: fadeUp .5s .25s ease both;
+  }
+
+  .tour {
+    font-family: 'Caveat', cursive;
+    font-size: 1rem;
+    color: var(--rust);
+    margin-bottom: 2rem;
+    animation: fadeUp .5s .3s ease both;
+  }
+
+  /* ── Divider ──────────────────────────── */
+  .divider {
+    border: none;
+    border-top: 1.5px dashed var(--line);
+    margin: 1.5rem 0;
+  }
+
+  /* ── Info grid ────────────────────────── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.4rem 2rem;
+    margin-bottom: 2rem;
+    animation: fadeUp .5s .35s ease both;
+  }
+
+  .info-block label {
+    font-family: 'Special Elite', cursive;
+    font-size: .6rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: .3rem;
+  }
+
+  .info-block p {
+    font-family: 'Caveat', cursive;
+    font-size: 1.25rem;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  /* ── Support acts ─────────────────────── */
+  .support-section {
+    margin-bottom: 2rem;
+    animation: fadeUp .5s .4s ease both;
+  }
+
+  .section-label {
+    font-family: 'Special Elite', cursive;
+    font-size: .6rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: .6rem;
+  }
+
+  .support-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    list-style: none;
+  }
+
+  .support-list li {
+    font-family: 'Caveat', cursive;
+    font-size: 1.1rem;
+    color: var(--ink);
+    background: var(--parchment);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: .2rem .75rem;
+    position: relative;
+  }
+
+  .support-list li::before {
+    content: '▸ ';
+    color: var(--rust);
+    font-size: .85rem;
+  }
+
+  /* ── Set ratings ──────────────────────── */
+  .ratings-section {
+    margin-bottom: 2rem;
+    animation: fadeUp .5s .45s ease both;
+  }
+
+  .ratings-row {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+    margin-top: .6rem;
+  }
+
+  .rating-card {
+    text-align: center;
+    flex: 1;
+  }
+
+  .rating-card .act-name {
+    font-family: 'Caveat', cursive;
+    font-size: .85rem;
+    color: var(--faded);
+    margin-bottom: .35rem;
+    line-height: 1.2;
+    min-height: 2.4rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .rating-bar-wrap {
+    background: var(--parchment);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    height: 90px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .rating-bar {
+    width: 100%;
+    background: linear-gradient(to top, var(--rust), var(--gold));
+    transition: height 1s cubic-bezier(.22,1,.36,1);
+    border-radius: 1px 1px 0 0;
+  }
+
+  .rating-score {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    color: var(--ink);
+    margin-top: .4rem;
+  }
+
+  .rating-score span {
+    font-size: .8rem;
+    color: var(--faded);
+  }
+
+  /* ── Photos placeholder ───────────────── */
+  .photos-section {
+    margin-bottom: 2rem;
+    animation: fadeUp .5s .5s ease both;
+  }
+
+  .photos-empty {
+    border: 1.5px dashed var(--line);
+    border-radius: 2px;
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--faded);
+    font-family: 'Caveat', cursive;
+    font-size: 1rem;
+    margin-top: .6rem;
+    font-style: italic;
+  }
+
+  /* ── Stamp ────────────────────────────── */
+  .stamp {
+    position: absolute;
+    top: 2.8rem;
+    right: 2.5rem;
+    width: 82px;
+    height: 82px;
+    border: 3px solid var(--stamp);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(6deg);
+    opacity: .75;
+    animation: stampIn .4s .7s cubic-bezier(.34,1.56,.64,1) both;
+  }
+
+  @keyframes stampIn {
+    from { opacity: 0; transform: rotate(6deg) scale(1.4); }
+    to   { opacity: .75; transform: rotate(6deg) scale(1); }
+  }
+
+  .stamp::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border: 1px solid var(--stamp);
+    border-radius: 2px;
+  }
+
+  .stamp-text {
+    font-family: 'Special Elite', cursive;
+    font-size: .5rem;
+    letter-spacing: .12em;
+    color: var(--stamp);
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .stamp-date {
+    font-family: 'Special Elite', cursive;
+    font-size: .65rem;
+    color: var(--stamp);
+    margin-top: .15rem;
+  }
+
+  .stamp-icon {
+    font-size: 1.4rem;
+    margin-bottom: .1rem;
+  }
+
+  /* ── Footer ───────────────────────────── */
+  .page-footer {
+    border-top: 1px solid var(--line);
+    padding-top: .75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: fadeUp .5s .55s ease both;
+  }
+
+  .page-footer p {
+    font-family: 'Caveat', cursive;
+    font-size: .9rem;
+    color: var(--faded);
+  }
+
+  .avg-badge {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    color: var(--ink);
+    background: var(--parchment);
+    border: 1px solid var(--gold);
+    padding: .15rem .65rem;
+    border-radius: 2px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }

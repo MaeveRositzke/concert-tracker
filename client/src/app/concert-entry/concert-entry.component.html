@@ -1,0 +1,112 @@
+@if (loading) {
+    <div class="page">
+      <div class="holes">
+        @for (hole of [1,2,3,4,5,6,7]; track hole) { <div class="hole"></div> }
+      </div>
+      <div class="loading-state">
+        <p>opening the diary<span class="ellipsis">...</span></p>
+      </div>
+    </div>
+  }
+  
+  @if (error) {
+    <div class="page">
+      <div class="holes">
+        @for (hole of [1,2,3,4,5,6,7]; track hole) { <div class="hole"></div> }
+      </div>
+      <div class="error-state">
+        <p>✦ {{ error }}</p>
+      </div>
+    </div>
+  }
+  
+  @if (!loading && !error && entry) {
+    <div class="page">
+  
+      <div class="holes">
+        @for (hole of [1,2,3,4,5,6,7]; track hole) {
+          <div class="hole"></div>
+        }
+      </div>
+
+      <div class="stamp">
+        <div class="stamp-text">Show<br>Attended</div>
+        <div class="stamp-date">{{ entry.date.slice(-4) }}</div>
+      </div>
+  
+      <div class="entry-meta">
+        <span class="entry-number">Concert Entry {{ entryNumber }}</span>
+        <span>{{ formattedDate }}</span>
+      </div>
+
+      <h1 class="headliner">{{ entry.headliner }}</h1>
+      <p class="tour">{{ entry.tour }}</p>
+  
+      <hr class="divider" />
+  
+      <div class="info-grid">
+        <div class="info-block">
+          <label>Venue</label>
+          <p>{{ entry.venue }}</p>
+        </div>
+        <div class="info-block">
+          <label>Location</label>
+          <p>{{ entry.city }}</p>
+        </div>
+      </div>
+
+      <div class="support-section">
+        <div class="section-label">Supporting Acts</div>
+        <ul class="support-list">
+          @for (act of entry.support; track act) {
+            <li>{{ act }}</li>
+          }
+        </ul>
+      </div>
+  
+      <hr class="divider" />
+  
+      <div class="ratings-section">
+        <div class="section-label">Set Ratings</div>
+        <div class="ratings-row">
+          @for (score of entry.setRatings; track score; let i = $index) {
+            <div class="rating-card">
+              <div class="act-name">{{ allActs[i] }}</div>
+              <div class="rating-bar-wrap">
+                <div
+                  class="rating-bar"
+                  [style.height]="ratingPercent(score)"
+                ></div>
+              </div>
+              <div class="rating-score">
+                {{ score }}<span>/10</span>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+  
+      <hr class="divider" />
+  
+      <div class="photos-section">
+        <div class="section-label">Photos</div>
+  
+        @if (entry.photos.length === 0) {
+          <div class="photos-empty">
+            No photos added yet... drop some memories in here!
+          </div>
+        } @else {
+          <div class="photos-grid">
+            @for (photo of entry.photos; track photo) {
+              <img [src]="photo" alt="Concert photo" class="photo-thumb" />
+            }
+          </div>
+        }
+      </div>
+
+      <div class="page-footer">
+        <div class="avg-badge">avg {{ averageRating }} / 10</div>
+      </div>
+  
+    </div>
+  }

@@ -1,0 +1,15 @@
+services:
+  # PostgreSQL database
+  postgresql_db:
+    image: postgres:latest
+    container_name: postgresql-db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PW}
+    volumes:
+      - postgresql_db_data:/var/lib/postgresql # Docker managed volume
+
+volumes:
+  postgresql_db_data:
