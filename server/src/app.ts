@@ -3,7 +3,7 @@ import cors from "cors";
 const app = express();
 const port = 5000
 
-app.use(express.json(), cors({origin: "http://localhost:5173"}));
+app.use(express.json(), cors({origin: "http://localhost:4200"}));
 
 app.get('/api/concert-entry', (req: Request, res: Response) => {
     res.send({
@@ -15,6 +15,7 @@ app.get('/api/concert-entry', (req: Request, res: Response) => {
         venue: "Babeville at Ashbury Hall",
         city: "Buffalo, NY",
         tour: "Bleeds Tour",
+        entryNumber: 1
       });
 })
 

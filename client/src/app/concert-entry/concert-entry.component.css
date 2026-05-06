@@ -275,39 +275,34 @@
   /* ── Stamp ────────────────────────────── */
   .stamp {
     position: absolute;
-    top: 2.8rem;
-    right: 2.5rem;
+    top: 5rem;
+    right: 2rem;
     width: 82px;
     height: 82px;
-    border: 3px solid var(--stamp);
-    border-radius: 4px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     transform: rotate(6deg);
-    opacity: .75;
     animation: stampIn .4s .7s cubic-bezier(.34,1.56,.64,1) both;
   }
 
   @keyframes stampIn {
     from { opacity: 0; transform: rotate(6deg) scale(1.4); }
-    to   { opacity: .75; transform: rotate(6deg) scale(1); }
+    to   { opacity: 1; transform: rotate(6deg) scale(1); }
   }
 
   .stamp::before {
     content: '';
     position: absolute;
     inset: 3px;
-    border: 1px solid var(--stamp);
-    border-radius: 2px;
   }
 
   .stamp-text {
     font-family: 'Special Elite', cursive;
-    font-size: .5rem;
-    letter-spacing: .12em;
-    color: var(--stamp);
+    font-size: 0.8rem;
+    letter-spacing: .03rem;
+    color: #7a2318;
     text-transform: uppercase;
     text-align: center;
     line-height: 1.5;
@@ -315,8 +310,8 @@
 
   .stamp-date {
     font-family: 'Special Elite', cursive;
-    font-size: .65rem;
-    color: var(--stamp);
+    font-size: 1rem;
+    color: #7a2318;
     margin-top: .15rem;
   }
 

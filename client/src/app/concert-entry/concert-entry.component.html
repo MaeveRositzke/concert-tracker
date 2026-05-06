@@ -1,4 +1,4 @@
-@if (loading) {
+@if (concertEntry.isLoading()) {
     <div class="page">
       <div class="holes">
         @for (hole of [1,2,3,4,5,6,7]; track hole) { <div class="hole"></div> }
@@ -9,18 +9,18 @@
     </div>
   }
   
-  @if (error) {
+  @if (concertEntry.error()) {
     <div class="page">
       <div class="holes">
         @for (hole of [1,2,3,4,5,6,7]; track hole) { <div class="hole"></div> }
       </div>
       <div class="error-state">
-        <p>✦ {{ error }}</p>
+        <p>Could not load concert entry. Please try again.</p>
       </div>
     </div>
   }
   
-  @if (!loading && !error && entry) {
+  @if (!concertEntry.isLoading() && !concertEntry.error() && concertEntry.value(); as entry) {
     <div class="page">
   
       <div class="holes">
@@ -35,8 +35,8 @@
       </div>
   
       <div class="entry-meta">
-        <span class="entry-number">Concert Entry {{ entryNumber }}</span>
-        <span>{{ formattedDate }}</span>
+        <span class="entry-number">Concert Entry {{ entry.entryNumber | formatEntry }}</span>
+        <span>{{ entry.date | formatDate }}</span>
       </div>
 
       <h1 class="headliner">{{ entry.headliner }}</h1>
@@ -71,7 +71,7 @@
         <div class="ratings-row">
           @for (score of entry.setRatings; track score; let i = $index) {
             <div class="rating-card">
-              <div class="act-name">{{ allActs[i] }}</div>
+              <div class="act-name">{{ allActs()[i] }}</div>
               <div class="rating-bar-wrap">
                 <div
                   class="rating-bar"
@@ -105,7 +105,7 @@
       </div>
 
       <div class="page-footer">
-        <div class="avg-badge">avg {{ averageRating }} / 10</div>
+        <div class="avg-badge">avg {{ averageRating() }} / 10</div>
       </div>
   
     </div>
